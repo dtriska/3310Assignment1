@@ -50,6 +50,16 @@ public:
                     unvisited.push(vertex);
                 }
             }
+
+            if (unvisited.empty()){
+                for (int i = 1; i <= V; ++i) {
+                    if (!visited[i]) {
+                    unvisited.push(i);
+                    visited[i] = true;
+                    break;
+                    }
+                }
+            }
         }
     }
     
@@ -58,7 +68,7 @@ public:
 int main() {
     std::cout << "Enter Number of verticies and tuples of edges \n";
     std::cout << "For Example: 5 (1,2) (3,4) (3,5) (4,5)\n";
-    int verticies = 5;
+    int verticies;
     std::cin >> verticies;
 
     // Consume the newline character left in the input buffer
@@ -87,7 +97,7 @@ int main() {
     std::vector<Point> points;
 
     // Loop to create vertices
-    for (int i = 1; i < verticies + 1; ++i) {
+    for (int i = 1; i < verticies + 1; i++) {
         Point p;  // Create a new Point instance
         p.x = i;  // Assign the x coordinate (assuming it's based on the loop index)
         points.push_back(p);  // Add the point to the vector
@@ -100,7 +110,7 @@ int main() {
         g.addEdge(edge.x, edge.y);
     }
 
-    g.BFS(3);
+    g.BFS(1);
     
     return 0;
     }
