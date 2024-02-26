@@ -30,9 +30,29 @@ public:
     // Function to add an edge to the graph
     void addEdge(int u, int v) {
         adjList[u].push_back(v);
-        // For undirected graph, add this line:
-        // adjList[v].push_back(u);
+        adjList[v].push_back(u);
     }
+
+    void BFS(int start){
+        std::queue<int> unvisited;
+        vector<bool> visited(V, false);
+
+        unvisited.push(start);
+        visited[start] = true;
+        while (!unvisited.empty()){
+            int current = unvisited.front();
+            cout << current << " ";
+            unvisited.pop();
+
+            for (int vertex : adjList[current]){
+                if (!visited[vertex]){
+                    visited[vertex] = true;
+                    unvisited.push(vertex);
+                }
+            }
+        }
+    }
+    
 };
 
 int main() {
@@ -75,6 +95,12 @@ int main() {
 
     // Create a graph
     Graph g(verticies); // Graph with vertices
+
+    for (const auto edge : edges){
+        g.addEdge(edge.x, edge.y);
+    }
+
+    g.BFS(3);
     
     return 0;
     }
