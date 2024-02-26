@@ -52,8 +52,8 @@ public:
             }
 
             if (unvisited.empty()){
-                for (int i = 1; i <= V; ++i) {
-                    if (!visited[i]) {
+                for (int i = 1; i < V; ++i) {
+                    if (!visited[i]) { 
                     unvisited.push(i);
                     visited[i] = true;
                     break;
@@ -97,7 +97,7 @@ int main() {
     std::vector<Point> points;
 
     // Loop to create vertices
-    for (int i = 1; i < verticies + 1; i++) {
+    for (int i = 0; i < verticies + 1; i++) {
         Point p;  // Create a new Point instance
         p.x = i;  // Assign the x coordinate (assuming it's based on the loop index)
         points.push_back(p);  // Add the point to the vector
@@ -110,7 +110,7 @@ int main() {
         g.addEdge(edge.x, edge.y);
     }
 
-    g.BFS(1);
+    g.BFS(0);
     
     return 0;
     }
