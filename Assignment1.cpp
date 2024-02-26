@@ -54,9 +54,10 @@ public:
             if (unvisited.empty()){
                 for (int i = 1; i < V; ++i) {
                     if (!visited[i]) { 
-                    unvisited.push(i);
-                    visited[i] = true;
-                    break;
+                        std::cout << std::endl;
+                        unvisited.push(i);
+                        visited[i] = true;
+                        break;
                     }
                 }
             }
