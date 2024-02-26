@@ -2,6 +2,7 @@
 #include <vector>
 #include <queue>
 #include <unordered_set>
+#include <limits>
 
 using namespace std;
 
@@ -38,7 +39,10 @@ int main() {
     std::cout << "Enter Number of verticies and tuples of edges \n";
     std::cout << "For Example: 5 (1,2) (3,4) (3,5) (4,5)\n";
     int verticies = 5;
-    // std::cin >> verticies;
+    std::cin >> verticies;
+
+    // Consume the newline character left in the input buffer
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     std::vector<Edge> edges; // Vector to store edges
     std::string input;
@@ -59,12 +63,6 @@ int main() {
         }
     }
 
-    // Printing the edges
-    std::cout << "You entered the following edges:" << std::endl;
-    for (const auto& edge : edges) {
-        std::cout << "(" << edge.x << ", " << edge.y << ")" << std::endl;
-    }
-
     // Create a vector to store points
     std::vector<Point> points;
 
@@ -73,11 +71,6 @@ int main() {
         Point p;  // Create a new Point instance
         p.x = i;  // Assign the x coordinate (assuming it's based on the loop index)
         points.push_back(p);  // Add the point to the vector
-    }
-
-    std::cout << "You entered the following points:" << std::endl;
-    for (const auto& point : points) {
-        std::cout << point.x << std::endl;
     }
 
     // Create a graph
