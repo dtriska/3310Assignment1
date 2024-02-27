@@ -69,10 +69,10 @@ class Graph {
     }
 }
 
-public class Assignment1 {
+public class Prog1 {
     public static void main(String[] args) {
         if (args.length == 0) { // No input file passed
-            System.out.println("Usage: java Assignment1 <input_file>");
+            System.out.println("Usage: java Prog1 <input_file>");
             return;
         }
 
