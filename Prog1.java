@@ -5,70 +5,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-class Point { // Each vertex
-    int x;
-}
-
-class Edge { // Each Edge Connection
-    int x;
-    int y;
-}
-
-// Graph class
-class Graph {
-    private int V; // Number of vertices
-    private ArrayList<ArrayList<Integer>> adjList; // Adjacency list
-
-    // Constructor
-    Graph(int vertices) {
-        V = vertices;
-        adjList = new ArrayList<>(V);
-        for (int i = 0; i < V; ++i)
-            adjList.add(new ArrayList<>());
-    }
-
-    // Function to add an edge to the graph
-    void addEdge(int u, int v) {
-        // Quick solution for offset in indexing
-        u--;
-        v--;
-        adjList.get(u).add(v);
-        adjList.get(v).add(u);
-    }
-
-    void BFS(int start) { // Breadth - First - Search
-        Queue<Integer> unvisited = new LinkedList<>(); // Standard Queue
-        boolean[] visited = new boolean[V]; // visited array where index corrsponds to each vertex
-
-        // Initialize Array and Queue
-        unvisited.add(start); 
-        visited[start] = true;
-
-        while (!unvisited.isEmpty()) { // Will continue search until nothing left in queue
-            int current = unvisited.poll(); // Poll is essentially Java equivalent of poping from top
-            System.out.print((current + 1) + " "); // Refix indexing offset for printing output
-
-            for (int vertex : adjList.get(current)) { // Travereses Adjacency List
-                if (!visited[vertex]) { // If not already in visited
-                    visited[vertex] = true;
-                    unvisited.add(vertex);
-                }
-            }
-
-            if (unvisited.isEmpty()) { // If current Graph has no more connections
-                for (int i = 1; i < V; ++i) {
-                    if (!visited[i]) {
-                        System.out.println();
-                        unvisited.add(i);
-                        visited[i] = true;
-                        break;
-                    }
-                }
-            }
-        }
-    }
-}
-
 public class Prog1 {
     public static void main(String[] args) {
         if (args.length == 0) { // No input file passed
@@ -117,6 +53,75 @@ public class Prog1 {
         } catch (FileNotFoundException e) {
             System.err.println("File not found: " + filename); // Handle invalid user input
         }
+    }
+}
+
+class Point { // Each vertex
+    int x;
+}
+
+class Edge { // Each Edge Connection
+    int x;
+    int y;
+}
+
+// Graph class
+class Graph {
+    private int V; // Number of vertices
+    private ArrayList<ArrayList<Integer>> adjList; // Adjacency list
+
+    // Constructor
+    Graph(int vertices) {
+        V = vertices;
+        adjList = new ArrayList<>(V);
+        for (int i = 0; i < V; ++i)
+            adjList.add(new ArrayList<>());
+    }
+
+    // Function to add an edge to the graph
+    void addEdge(int u, int v) {
+        // Quick solution for offset in indexing
+        u--;
+        v--;
+        adjList.get(u).add(v);
+        adjList.get(v).add(u);
+    }
+
+    void BFS(int start) { // Breadth - First - Search
+        Queue<Integer> unvisited = new LinkedList<>(); // Standard Queue
+        boolean[] visited = new boolean[V]; // visited array where index corrsponds to each vertex
+
+        // Initialize Array and Queue
+        unvisited.add(start); 
+        visited[start] = true;
+
+        int connectedComponents = 1;
+
+        while (!unvisited.isEmpty()) { // Will continue search until nothing left in queue
+            int current = unvisited.poll(); // Poll is essentially Java equivalent of poping from top
+            System.out.print((current + 1) + " "); // Refix indexing offset for printing output
+
+            for (int vertex : adjList.get(current)) { // Travereses Adjacency List
+                if (!visited[vertex]) { // If not already in visited
+                    visited[vertex] = true;
+                    unvisited.add(vertex);
+                }
+            }
+
+            if (unvisited.isEmpty()) { // If current Graph has no more connections
+                for (int i = 1; i < V; ++i) {
+                    if (!visited[i]) {
+                        System.out.println();
+                        unvisited.add(i);
+                        visited[i] = true;
+                        connectedComponents += 1;
+                        break;
+                    }
+                }
+            }
+        }
+        
+        System.out.println("\n" + connectedComponents + " connected components");
     }
 }
 
