@@ -9,11 +9,13 @@ This Java program reads graph data from an input file and performs a Breadth-Fir
 1. Open a terminal or command prompt.
 2. Navigate to the directory containing the Java source files (`Prog1.java`).
 3. Compile the Java files using the `javac` command:
+4. Example: javac Prog1.java Graph.java Point.java Edge.java
 
 
 ### Execution
 
-1. After successful compilation, run the program using the `java` command followed by the name of the main class (`Prog1`):
+1. After successful compilation, run the program using the `java` command followed by the name of the main class (`Prog1`) along with the classpath:
+2. Example: java -classpath . Prog1 input_file.txt
 
 
 Replace `input_file.txt` with the path to your input file containing graph data. Though an example 'input_file.txt' is included.
